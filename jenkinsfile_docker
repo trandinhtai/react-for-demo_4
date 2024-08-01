@@ -1,0 +1,39 @@
+pipeline {
+  agent none
+
+  stages {
+
+    stage ('Install Dependencies') {
+      agent {
+        docker {
+          image 'node:8.9.4-alpine'
+        }
+      }
+      steps {
+        sh '''
+          echo "Installing..."
+          npm install
+          echo "All dependencies installed."
+          ls -al
+        '''
+      }
+    }
+    
+    stage ('Test') {
+      steps {
+          sh 'ls -al'
+          sh 'echo "Run unit test..."'
+          sh 'npm test'
+          sh 'echo "Run unit test successfully.'
+      }
+    }
+
+    stage ('Result') {
+      agent any
+      stesps {
+         sh 'echo "Starting to build docker image"'
+         sh 'docker build -t pick-color:v1 -f docker/Dockerfile .'
+      }
+    }
+  }
+}

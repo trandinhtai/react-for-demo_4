@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout source code') {
       steps {
-        git branch: 'master',
+        git branch: 'main',
             credentialsId: 'jenkins_github_pac',
             url: 'https://github.com/trandinhtai/react-for-demo_4.git'
         sh "ls -la"

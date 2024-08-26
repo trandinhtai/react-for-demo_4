@@ -17,7 +17,7 @@ pipeline {
 
     stage ('Install dependencies') {
       tools {
-        nodejs 'nodejs 12.22.9'
+        nodejs 'nodejs v12.22.9'
       }
       steps {
         sh '''
@@ -31,7 +31,7 @@ pipeline {
 
     stage ('Build') {
       steps {
-        nodejs(nodeJSInstallationName: 'nodejs 12.22.9') {
+        nodejs(nodeJSInstallationName: 'nodejs v12.22.9') {
           sh 'echo "Build application..."'
           sh 'npm run build'
           sh 'echo "Build application successfully."'
@@ -46,7 +46,7 @@ pipeline {
     
     stage ('Test') {
       tools {
-        nodejs 'nodejs 12.22.9'
+        nodejs 'nodejs v12.22.9'
       }
       steps {
         sh 'echo "Run unit test..."'
